@@ -1,0 +1,41 @@
+name: CI
+on:
+    push:
+        branches:
+         - "main"
+         - "develop"
+    pull_request:
+        branches:
+            - "main"
+            - "develop"
+    workflow_dispatch:
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - run: npm ci
+            - run: npm run lint
+
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Install 7zip (I use this for the easy ignorefile integration)
+              run: sudo apt-get install p7zip-full
+            - name: Run a multi-line script
+              run: 7z a dist/${{ github.ref }}.zip . -xr@.buildignore
+            - name: Upload archive to artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: dist-zip
+                  path: |
+                      dist/${{ github.ref }}.zip
