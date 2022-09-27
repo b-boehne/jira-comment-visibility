@@ -1,0 +1,10 @@
+.buildignore
+.eslintignore
+.eslintrc.yml
+.git/
+.gitignore
+.idea/
+dist/
+LICENSE
+node_modules/
+README.md

@@ -1,0 +1,21 @@
+{
+  "name": "jira-comment-visibility",
+  "version": "0.0.1",
+  "description": "Acts as a default comment visibility setting for Jira. Only works for our company internal instance for now.",
+  "scripts": {
+    "lint": "npx eslint .",
+    "fix": "npx eslint . --fix",
+    "build": "7z a dist/$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match).zip . -xr@.buildignore"
+  },
+  "author": "Bastian Böhne",
+  "license": "Beer-Ware",
+  "devDependencies": {
+    "@html-eslint/eslint-plugin": "^0.14.1",
+    "@html-eslint/parser": "^0.14.0",
+    "eslint": "^8.24.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1"
+  }
+}
