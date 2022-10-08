@@ -1,6 +1,6 @@
 {
   "name": "jira-comment-visibility",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Acts as a default comment visibility setting for Jira. Only works for our company internal instance for now.",
   "scripts": {
     "lint": "npx eslint .",
