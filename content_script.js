@@ -1,5 +1,7 @@
 /* global MutationObserver */
-(function () {
+/* global chrome */
+
+(() => {
   function waitForElement (selector) {
     return new Promise(resolve => {
       if (document.querySelector(selector)) {
@@ -20,55 +22,59 @@
     })
   }
 
-  // TODO: this can be more performant for sure - or more concise at least, lol
-  function findSelection (node, selection = 'Projektteam - zuweisbare Benutzer') {
-    if (node.innerHTML === selection) {
-      return node
-    }
-    for (const child of node.childNodes) {
-      if (child.innerHTML === selection) {
-        return child
+  function clickSelectionInMenuOptions (selection, menuOptions) {
+    menuOptions.forEach(option => {
+      if (option.innerText === selection) {
+        option.click()
       }
-      const found = findSelection(child, selection)
-      if (found) {
-        return found
-      }
-    }
-    return null
+    })
+    // TODO: display something to the user if none is found for any of the options - can't have accidental visible comments
   }
 
-  function init (commentWrapper) {
+  function findAndClickSelection () {
+    const menuList = document.querySelector('.comment-visibility__menu-list')
+    const menuOptions = menuList.querySelectorAll('.comment-visibility__option')
+
+    // little trick to stop the menu list from flashing
+    menuList.style.display = 'none'
+    const options = [...menuOptions].map(option => option.innerText)
+    chrome.storage.sync.set({ options })
+
+    // TODO: if we don't use sync get we can maybe get rid of the menu flashing
+    chrome.storage.sync.get('selection', ({ selection }) => {
+      clickSelectionInMenuOptions(selection, menuOptions)
+      menuList.style.display = ''
+    })
+  }
+
+  function preventFlashingDarkColors (visibilityNode) {
+    const visibilityButton = visibilityNode.querySelector('button')
+    visibilityButton.style.background = 'var(--ds-background-neutral,rgba(9,30,66,0.04))'
+    visibilityButton.style.color = 'var(--ds-text,#42526E)'
+  }
+
+  function findAndClickVisibilityChanger (addedNode) {
+    const visibilityNode = addedNode.querySelector('[data-testid="issue-comment-base.ui.comment.comment-visibility.comment-visibility-wrapper"]')
+    if (visibilityNode) {
+      visibilityNode.firstChild.click()
+      preventFlashingDarkColors(visibilityNode)
+      findAndClickSelection()
+    }
+  }
+
+  function initMutationObserver (commentWrapper) {
     const observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         if (mutation.addedNodes.length) {
           mutation.addedNodes.forEach(addedNode => {
-            const visibilityNode = addedNode.querySelector('[data-testid="issue-comment-base.ui.comment.comment-visibility.comment-visibility-wrapper"]')
-            if (visibilityNode) {
-              visibilityNode.firstChild.click()
-
-              const menuList = document.querySelector('.comment-visibility__menu-list')
-              const menuOptions = menuList.querySelectorAll('.comment-visibility__option')
-              // TODO: save the options to storage to update the option list in popup
-
-              menuOptions.forEach(option => {
-                if (findSelection(option)) {
-                  option.click()
-                  // TODO: persist option node to not search it again for new comments (storage? or maybe localStorage)
-                  // TODO: display something to the user if none is found for any of the options - can't have accidental visible comments
-                }
-              })
-            }
+            findAndClickVisibilityChanger(addedNode)
           })
         }
       })
     })
     observer.observe(commentWrapper, {
-      attributes: true,
-      characterData: true,
       childList: true,
-      subtree: true,
-      attributeOldValue: true,
-      characterDataOldValue: true
+      subtree: true
     })
   }
 
@@ -79,7 +85,14 @@
   ]
   commentWrapperSelectors.forEach(selector => {
     waitForElement(selector).then((element) => {
-      init(element.parentNode)
+      initMutationObserver(element.parentNode)
     })
+  })
+
+  chrome.storage.onChanged.addListener(function (changes, namespace) {
+    if (namespace === 'sync' && changes.selection?.newValue) {
+      // TODO: can be made much more performant
+      findAndClickVisibilityChanger(document)
+    }
   })
 })()
