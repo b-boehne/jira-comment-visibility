@@ -19,3 +19,13 @@ Any contribution that is closer to coding advice, please express via PR :)
 
 There's probably TODOs scattered everywhere, feel free to take one up.
 Shoot me a message that you're doing it though, to prevent us from doing the same thing twice.
+
+## Installing
+
+As I'm currently refusing to pay Google $$$ to be able to upload this to the Chrome Web Store you will have to install this manually.
+
+Download the newest version here:  
+https://github.com/b-boehne/jira-comment-visibility/releases/latest/download/dist.zip
+
+Install this manually in chrome:  
+https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/
