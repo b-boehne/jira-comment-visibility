@@ -42,14 +42,6 @@
 		"web-ext": "^7.2.0",
 		"xo": "^0.50.0"
 	},
-	"webExt": {
-		"sourceDir": "distribution",
-		"run": {
-			"startUrl": [
-				"https://github.com/fregante/browser-extension-template"
-			]
-		}
-	},
 	"@parcel/bundler-default-bug": "https://github.com/parcel-bundler/parcel/issues/8071",
 	"@parcel/bundler-default": {
 		"minBundles": 10000000
