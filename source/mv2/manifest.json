@@ -1,6 +1,6 @@
 {
   "name": "Jira Comment Visibility",
-  "version": "0.1.1",
+  "version": "2.0.0",
   "description": "Acts as a default comment visibility setting for Jira. Only works for our company internal instance for now",
   "homepage_url": "https://github.com/b-boehne/jira-comment-visibility",
   "manifest_version": 2,
