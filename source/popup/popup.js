@@ -1,6 +1,6 @@
 chrome.storage.sync.get('options', ({options}) => {
 	options = options || [];
-	if (!options.length) {
+	if (options.length === 0) {
 		return;
 	}
 
