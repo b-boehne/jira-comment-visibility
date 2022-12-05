@@ -8,15 +8,22 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        strategy:
+          matrix:
+            browser: [chrome, firefox]
         steps:
             - uses: actions/checkout@v3
-            - name: Install 7zip (I use this for the easy ignorefile integration)
-              run: sudo apt-get install p7zip-full
-            - name: Pack repo into zip file
-              run: 7z a dist/${{ github.ref }}.zip . -xr@.buildignore
-            - name: Upload archive to artifacts
+            - uses: actions/setup-node@v3
+              with:
+                node-version: 16
+                cache: 'npm'
+            - name: Build
+              run: |
+                npm install
+                npm run build:${{ matrix.browser }}
+            - name: Upload builds
               uses: actions/upload-artifact@v3
               with:
-                  name: dist-zip
+                  name: jira-comment-visibility.${{ matrix.browser }}.zip
                   path: |
-                      dist/${{ github.ref }}.zip
+                    web-ext-artifacts/${{ matrix.browser }}.zip
