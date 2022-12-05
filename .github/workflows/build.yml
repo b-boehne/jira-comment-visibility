@@ -24,6 +24,6 @@ jobs:
             - name: Upload builds
               uses: actions/upload-artifact@v3
               with:
-                  name: jira-comment-visibility.${{ matrix.browser }}.zip
+                  name: jira-comment-visibility.${{ matrix.browser }}
                   path: |
                     web-ext-artifacts/${{ matrix.browser }}.zip

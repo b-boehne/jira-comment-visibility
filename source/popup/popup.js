@@ -1,6 +1,10 @@
 chrome.storage.sync.get('options', ({options}) => {
 	const selectNode = document.querySelector('#select');
 
+	while (selectNode.firstChild) {
+		selectNode.firstChild.remove();
+	}
+
 	for (const text of options) {
 		const optionNode = document.createElement('option');
 		optionNode.value = text;
