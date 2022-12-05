@@ -7,8 +7,7 @@
   "minimum_chrome_version": "88",
   "browser_specific_settings": {
 	"gecko": {
-	  "id": "addon@example.com",
-	  "strict_min_version": "67.0"
+	  "id": "jira-comment-visibility@example.com"
 	}
   },
   "browser_action": {
@@ -25,7 +24,8 @@
   "content_scripts": [
 	{
 	  "matches": [
-		"https://*.atlassian.net/browse/*"
+		"https://*.atlassian.net/browse/*",
+		"https://*.atlassian.net/jira/*"
 	  ],
 	  "js": [
 		"../content.js"

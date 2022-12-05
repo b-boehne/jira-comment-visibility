@@ -1,6 +1,7 @@
 {
 	"private": true,
 	"scripts": {
+		"build": "run-p --parallel build:*",
 	  	"build:chrome": "parcel build source/mv3/manifest.json --no-content-hash --no-source-maps --dist-dir build/chrome --no-cache --detailed-report 0",
 	  	"build:firefox": "parcel build source/mv2/manifest.json --no-content-hash --no-source-maps --dist-dir build/firefox --no-cache --detailed-report 0",
 		"lint": "run-p lint:*",
