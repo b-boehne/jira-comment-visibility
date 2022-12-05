@@ -1,6 +1,10 @@
 chrome.storage.sync.get('options', ({options}) => {
-	const selectNode = document.querySelector('#select');
+	options = options || [];
+	if (!options.length) {
+		return;
+	}
 
+	const selectNode = document.querySelector('#select');
 	while (selectNode.firstChild) {
 		selectNode.firstChild.remove();
 	}
