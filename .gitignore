@@ -1,7 +1,13 @@
-node_modules
-distribution
-.parcel-cache
-build
-.ddk.json
-.idea
-web-ext-artifacts
+# -- OS specific Files
+.DS_Store
+
+# -- IDE specific Files
+.idea/
+
+# -- Build
+.parcel-cache/
+build/
+web-ext-artifacts/
+
+# -- External libs
+node_modules/
