@@ -22,13 +22,19 @@ Shoot me a message that you're doing it though, to prevent us from doing the sam
 
 ## Installing
 
+### Chrome
+
 As I'm currently refusing to pay Google $$$ to be able to upload this to the Chrome Web Store you will have to install this manually.
 
 Download the newest version here:
-https://github.com/b-boehne/jira-comment-visibility/releases/latest/download/dist.zip
+https://github.com/b-boehne/jira-comment-visibility/tags
 
 Install this manually in chrome:
 https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/
+
+### Firefox
+
+I'm currently working on getting this release to the Firefox Webstore, until then do the same as with chrome.
 
 ## Build locally
 
