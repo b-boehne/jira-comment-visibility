@@ -1,28 +1,28 @@
 chrome.storage.sync.get('options', ({options}) => {
-	options = options || [];
+	options = options || []
 	if (options.length === 0) {
-		return;
+		return
 	}
 
-	const selectNode = document.querySelector('#select');
+	const selectNode = document.querySelector('#select')
 	while (selectNode.firstChild) {
-		selectNode.firstChild.remove();
+		selectNode.firstChild.remove()
 	}
 
 	for (const text of options) {
-		const optionNode = document.createElement('option');
-		optionNode.value = text;
-		optionNode.text = text;
-		selectNode.append(optionNode);
+		const optionNode = document.createElement('option')
+		optionNode.value = text
+		optionNode.text = text
+		selectNode.append(optionNode)
 	}
-});
+})
 
-const select = document.querySelector('#select');
+const select = document.querySelector('#select')
 
 chrome.storage.sync.get('selection', ({selection}) => {
-	select.value = selection;
-});
+	select.value = selection
+})
 
 select.addEventListener('change', async type => {
-	chrome.storage.sync.set({selection: type.target.value});
-});
+	chrome.storage.sync.set({selection: type.target.value})
+})

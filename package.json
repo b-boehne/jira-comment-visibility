@@ -22,6 +22,7 @@
 		"last 1 Firefox version"
 	],
 	"xo": {
+		"semicolon": false,
 		"envs": [
 			"browser",
 			"webextensions"
