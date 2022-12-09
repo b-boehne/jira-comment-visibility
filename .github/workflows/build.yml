@@ -21,10 +21,9 @@ jobs:
               run: |
                 npm install
                 npm run build:${{ matrix.browser }}
-                npm run package:${{ matrix.browser }}
             - name: Upload builds
               uses: actions/upload-artifact@v3
               with:
                   name: jira-comment-visibility.${{ matrix.browser }}
                   path: |
-                    web-ext-artifacts/${{ matrix.browser }}.zip
+                    build/${{ matrix.browser }}/*
