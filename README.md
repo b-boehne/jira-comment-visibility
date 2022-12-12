@@ -34,7 +34,8 @@ https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/
 
 ### Firefox
 
-I'm currently working on getting this release to the Firefox Webstore, until then do the same as with chrome.
+Install via Firefox Browser Add-Ons
+https://addons.mozilla.org/firefox/addon/jira-comment-visibility/
 
 ## Build locally
 
