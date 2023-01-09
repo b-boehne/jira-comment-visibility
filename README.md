@@ -24,13 +24,8 @@ Shoot me a message that you're doing it though, to prevent us from doing the sam
 
 ### Chrome
 
-As I'm currently refusing to pay Google $$$ to be able to upload this to the Chrome Web Store you will have to install this manually.
-
-Download the newest version here:
-https://github.com/b-boehne/jira-comment-visibility/tags
-
-Install this manually in chrome:
-https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/
+Install via Chrome Web Store
+https://chrome.google.com/webstore/detail/jira-comment-visibility/leonhglfgimocmaiomhegmeoobkmnhae/
 
 ### Firefox
 
@@ -41,7 +36,8 @@ https://addons.mozilla.org/firefox/addon/jira-comment-visibility/
 
 1. Checkout the repository to your local machine e.g. with `git clone https://github.com/b-boehne/jira-comment-visibility/`
 1. Run `npm install` to install all required dependencies
-1. Run `npm run build:chrome` or `npm run build:chrome && npm run package:firefox`
+1. Run `npm run build:chrome` or `npm run build:firefox`
+1. Run `npm run package:chrome` or `npm run package:firefox`
 
 The build step will create the `build` folder, this folder will contain the generated extensions.
 

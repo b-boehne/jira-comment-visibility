@@ -12,9 +12,7 @@
 	"128": "../icon.png"
   },
   "permissions": [
-	"storage",
-	"activeTab",
-	"scripting"
+	"storage"
   ],
   "host_permissions": [
 	"https://*.atlassian.net/browse/*"
